@@ -4,7 +4,7 @@ import java.util.List;
 public class main {
 	public static void main(String[] args){
 
-		//use this for indexes 0=hlikies, 1=epitheta , 2=onomata ktlp ktlp
+		//use this for indexes 1=epitheta, 2=onomata, 3=hlikies ktlp ktlp
 		List holder = new ArrayList();
 
 		//Preety self-explanatory
