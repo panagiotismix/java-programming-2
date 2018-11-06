@@ -42,8 +42,8 @@ public class main {
 		System.out.println("Printing after editing : ");
 		System.out.println(Mainlist.get(0));
 		System.out.println(Mainlist.get(1));
-
+		System.out.println("Kalimera");
 		//editing existing lists - WAY2, DIRECT EDITING in MainList
 
 	}//end of main
-}//end of class
+}//end of class	
