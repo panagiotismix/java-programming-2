@@ -6,17 +6,16 @@ public class DemoCode {
 
 
 	Scanner input = new Scanner(System.in);
-	int choice;
+	int choice, counter = 0;
 
 	List <String> CharNameList = new ArrayList <String>();
 
 
-	//Δημιουργια κεντρικης λιστας
 	List <List> mainList = new ArrayList <List>();
 
 	public static void main(String[] args) {
 
-		Main mainObject = new Main();
+		DemoCode mainObject = new DemoCode();
 
 		mainObject.menu();
 
@@ -29,6 +28,8 @@ public class DemoCode {
 		System.out.println("3. Attribute Creation.");
     	System.out.println("Waiting for your input, 0 to exit: ");
 
+    	do {
+
     	choice = input.nextInt();
 
     	if (choice == 1)
@@ -39,14 +40,20 @@ public class DemoCode {
     		chooseList();
     	else if (choice == 0)
     		System.exit(0);
+    	else
+    		System.out.println("Try again.");
+    	}
+    	 while (choice > 3 || choice < 0);
+
 	}
 
-//Δημιουργια καινουριου παιδιου
 
 	 public void newField() {
 
 		List <String> fieldList = new ArrayList <String> ();
 
+		fieldList.add(String.valueOf(counter));
+		counter++;
 		System.out.println("Enter a name: ");
 		input.nextLine();
 		fieldList.add(input.nextLine());
@@ -65,11 +72,13 @@ public class DemoCode {
 	 public void printFieldLists( ) {
 			for (int i = 0; i < mainList.size(); i++) {
 				int x = i + 1;
-				System.out.println("Field Ν." + x);
+				System.out.println();
+				System.out.println("Field N." + x);
 				for (int y = 0; y < mainList.get(i).size(); y++) {
 					System.out.println(mainList.get(i).get(y));
 				}
 			}
+			System.out.println();
 			System.out.println("Press 0 to return: "); {
 				choice = input.nextInt();
 				if (choice == 0)
@@ -77,14 +86,12 @@ public class DemoCode {
 			}
 	 }
 
-//Για σιμπλισιτι αυτη τη στιγμη θα ψαχνει με τη θεση στη μεινλιστ
 	public void chooseList() {
 		System.out.println("Choose the field you want: ");
-		addNewAttribute(mainList.get(choice = input.nextInt()));
+		addNewAttribute( (List<String>) mainList.get(choice = input.nextInt()));
 	}
 
-//Προσθηκη χαρακτηριστικου
-	 public void addNewAttribute(List fieldList) {
+	 public void addNewAttribute(List<String> fieldList) {
 
 		 String AtName;
 
