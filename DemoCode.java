@@ -11,7 +11,7 @@ public class DemoCode {
 	List <String> CharNameList = new ArrayList <String>();
 
 
-	List <List> mainList = new ArrayList <List>();
+	List <List<String>> mainList = new ArrayList <List<String>>();
 
 	public static void main(String[] args) {
 
