@@ -12,22 +12,22 @@ public class Example {
 
       do {
           System.out.println("******Menu******");
-          System.out.println("Δημιουργία πεδίου πάτα το 1.");
-          System.out.println("Εμφάνιση πεδίου πάτα 2.");
-          System.out.println("Για εμφάνιση των χαρακτηριστικών πάτα 3.");
-          System.out.println("Για έξοδο πάτα 4.");
-          System.out.printf("Επιλογή: ");
+          System.out.println("Create a field, 1");
+          System.out.println("Print a field 2.");
+          System.out.println("Print an attributes 3.");
+          System.out.println("Exit 4.");
+          System.out.printf("Choice: ");
           choice = sc.nextInt();
           if (choice == 1){
               counter++;
               ArrayList<Object> charInfos = new ArrayList<Object>();
               iDMap.put(counter, charInfos);
             do{
-              System.out.println("Θες να προσθέσεις χαρακτηριστικό; Πάτα 1, αλλιώς 0 για να επιστρέψεις στο menu.");
+              System.out.println("For adding an attribute, 1. For menu, 0.");
               choice = sc.nextInt();
               if(choice == 1){
                   String NameofAttribute,InfoofAttribute;
-                  System.out.println("Δώσε όνομα στο χαρακτηριστικό.");
+                  System.out.println("Give name fot the attribute.");
                   NameofAttribute = sc1.nextLine();
                   if(charNames.contains(NameofAttribute) == true){
                     int temp = 0;
@@ -38,13 +38,13 @@ public class Example {
                         System.out.println(i);
                       }
                     }
-                    System.out.println("Τι τιμή θέλεις να έχει το καινούργιο χαρακτηριστικό;");
+                    System.out.println("Give the info for the attribute.");
                     InfoofAttribute = sc1.nextLine();
 
                     charInfos.add(temp,InfoofAttribute);
                   } else {
                     charNames.add(NameofAttribute);
-                    System.out.println("Τι τιμή θέλεις να έχει το καινούργιο χαρακτηριστικό;");
+                    System.out.println("Give the info for the attribute.");
                     InfoofAttribute = sc1.nextLine();
                     charInfos.add(InfoofAttribute);
                   }
@@ -52,7 +52,7 @@ public class Example {
             }while(choice != 0);
           } else if (choice == 2){
               do{
-                System.out.println("Ποιο στοιχείο θές να εμφανίσεις με βάση το id του; Αν θες να επιστρέψεις στο menu πάτα 0.");
+                System.out.println("Which field do you want to print? Based on its id. For menu, 0.");
                 choice2 = sc.nextInt();
                 System.out.println();
                 System.out.println();
@@ -71,7 +71,7 @@ public class Example {
                     }
                     System.out.println();
                   } else {
-                    System.out.println("Δεν υπάρχει το συγκεκριμένο id. Παρακαλώ δώσε id που να υπάρχει, αλλίως πάτα 0 για να επιστρέψεις στο menu.");
+                    System.out.println("Please choose an id that exists.For menu, 0.");
                   }
               }while(choice2 != 0);
           } else if(choice == 3){
