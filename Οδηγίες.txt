@@ -47,7 +47,7 @@
 
 
 Universal μεταβλητές:
-Κύρια λίστα = mainList
-Λίστα πεδίων = fieldList
-Λίστα με ονοματα των ειδών των χαρακτήρων = attNameList (η λιστά που είναι στον αέρα)
+Κύρια λίστα = List<ArrayList<String>> mainList
+Λίστα πεδίων = ArrayList<String> fieldList
+Λίστα με ονοματα των ειδών των χαρακτήρων = ArrayList<String> attNameList (η λιστά που είναι στον αέρα)
 
