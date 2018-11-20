@@ -9,7 +9,6 @@ public class FieldEdit {
 	int ID = 0;
 	String attKind;
 
-	Menu mainObject = new Menu();
 	Scanner input = new Scanner(System.in);
 	int choice, counter = 0;
 	
@@ -26,7 +25,7 @@ public class FieldEdit {
 
 			if (choice == 0) {
 
-				mainObject.getMenu();
+				Menu.getMenu();
 
 			} else if (choice == 1) {
 
@@ -52,7 +51,8 @@ public class FieldEdit {
 		chooseList(mainList, attNameList);
 	}
 
-	public void printEditOptions(List<ArrayList<String>> mainList, ArrayList<String> fieldList, ArrayList<String> attNameList) {
+	public void printEditOptions(List<ArrayList<String>> mainList,
+			ArrayList<String> fieldList, ArrayList<String> attNameList) {
 
 		do {
 			System.out.println("0. Back to main menu.");
@@ -60,7 +60,7 @@ public class FieldEdit {
 			System.out.println("2. Edit existing attribute.");
 			System.out.println("3. Delete attribute.");
 			System.out.println("4. Add field.");
-			System.out.println("Waiting for your choice: ");
+			System.out.print("Waiting for your choice: ");
 
 			choice = input.nextInt();
 
@@ -71,13 +71,14 @@ public class FieldEdit {
 	    	else if (choice == 3)
 	    		deleteAttribute(fieldList);
 	    	else if (choice == 0)
-				mainObject.getMenu();
+					Menu.getMenu();
 	    	else
 	    		System.out.println("Invalide input, please try again: ");
-	    	}  while (choice <= 0 || choice >= 4);
+			
+			}  while (choice < 0 || choice >= 4);
 
 
-		}
+	}
 
 
 	 public void addNewAttribute(List<ArrayList<String>> mainList, ArrayList<String> fieldList, ArrayList<String> attNameList) {
@@ -118,8 +119,6 @@ public class FieldEdit {
 
 		} while (flag == 1);
 
-		printEditOptions(mainList, fieldList, attNameList);
-
 	 }
 
 	public void editAttribute(ArrayList<String> fieldList) {
@@ -135,7 +134,7 @@ public class FieldEdit {
 
 			if (choice == 0)
 
-				mainObject.getMenu();
+				Menu.getMenu();
 
 		   else if (choice == 1) {
 
@@ -143,13 +142,13 @@ public class FieldEdit {
 				choice = input.nextInt();
 				System.out.println("Input new value: ");
 				fieldList.set(choice, input.nextLine());
-				
+
 		   } else if (choice == 2) {
 			   for (int i = 0; i < fieldList.size(); i++) {
 					System.out.println(i + fieldList.get(i));
 			   }
-		   } 	else
-	    			System.out.println("Invalide input, please try again: ");
+		   } else
+	    		System.out.println("Invalide input, please try again: ");
 
 
 		} while (choice < 0 || choice > 2);
@@ -170,7 +169,7 @@ public class FieldEdit {
 
 			if (choice == 0)
 
-				mainObject.getMenu();
+				Menu.getMenu();
 
 		   else if (choice == 1) {
 
@@ -205,8 +204,8 @@ public class FieldEdit {
 
 		}
 
-		mainObject.getMenu();
-
+		Menu.getMenu();
+		
 	}
 
 }

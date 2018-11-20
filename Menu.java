@@ -9,9 +9,9 @@ public class Menu {
       Print printObject = new Print();
       FieldEdit FieldEditobject = new FieldEdit();
 
-      List <List<String>> mainList = new ArrayList<>();
-      List <String> attNameList = new ArrayList<>();
-      List <String> fieldList = new ArrayList<>();
+      List <ArrayList<String>> mainList = new ArrayList<>();
+      ArrayList <String> attNameList = new ArrayList<>();
+      ArrayList <String> fieldList = new ArrayList<>();
 
       System.out.println("\n*        Welcome to your Data Base Tool powered by Amstel!       *");
       System.out.println("         _________________________________________________       ");

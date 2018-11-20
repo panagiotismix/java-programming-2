@@ -28,31 +28,31 @@ public class Print {
 		Print object = new Print();
 
 		//EXAMPLE
-		List <String> attNameList = new ArrayList<>();
+		ArrayList <String> attNameList = new ArrayList<>();
 		attNameList.add("Name");
 		attNameList.add("Surname");
 		attNameList.add("Age");
 
-		List <ArrayList> mainList = new ArrayList<>();
+		List <ArrayList<String>> mainList = new ArrayList<>();
 
-		List <String> templist1 = new ArrayList<>();
+		ArrayList <String> templist1 = new ArrayList<>();
 		templist1.add("Grigorios");
 		templist1.add("Sakalidis");
 		templist1.add("21");
 
-		List<String> templist2 = new ArrayList<>();
+		ArrayList<String> templist2 = new ArrayList<>();
 		templist2.add("Antonis");
 		templist2.add("Papaspirou");
 		templist2.add("19");
 
-		mainList.add((ArrayList) templist1);
-		mainList.add((ArrayList) templist2);
+		mainList.add( templist1);
+		mainList.add( templist2);
 		//END OF EXAMPLE
 
 		object.PrintMenu(attNameList, mainList);
 	}// END OF MAIN
 
-	public void PrintMenu(List<String> attNameList, List<ArrayList> mainlist) {
+	public void PrintMenu(ArrayList<String> attNameList, List<ArrayList<String>> mainlist) {
 
 		Scanner input = new Scanner(System.in);
 		int choice=0;
@@ -60,7 +60,7 @@ public class Print {
 		System.out.println("Choose the way you want to print your data base :");
 		System.out.println("Complete Print(1).");
 		System.out.println("Print by attribute selection(2).");
-		System.out.println("Return (0). CAUTION:CURRENTLY NOT WORKING!!!RETURNS TO ITSELF INSTEAD.");
+		System.out.println("Return (0).");
 
 		do {
 			System.out.print("Choose one of the above:");
@@ -70,8 +70,7 @@ public class Print {
 		{
 
 		case 0:
-			PrintMenu(attNameList,mainlist); //TEMP:EPISTREFEI STON EAYTO TOU
-			//KANONIKA KANEI RETURN STO KIRIO MENU
+			Menu.getMenu();
 		break;
 
 		case 1:
@@ -84,7 +83,7 @@ public class Print {
 		} //end of switch
 	}
 
-	public void ShowComplete(List<String> attNameList, List<ArrayList> mainList1) {
+	public void ShowComplete(ArrayList<String> attNameList, List<ArrayList<String>> mainList1) {
 
 		Scanner input = new Scanner(System.in);
 
@@ -99,7 +98,7 @@ public class Print {
 			for (int j =0;j<attNameList.size(); j++)
 			{
 				System.out.print(mainList1.get(i).get(j));
-				for (int k = 0; k<24-((String) (mainList1.get(i)).get(j)).length(); k++) {
+				for (int k = 0; k<24-( (mainList1.get(i)).get(j)).length(); k++) {
 					System.out.print(" ");
 				}
 			}
@@ -112,7 +111,7 @@ public class Print {
 
 		}
 
-	public void ShowSelected(List<String> attNameList, List<ArrayList> mainList1) {
+	public void ShowSelected(ArrayList<String> attNameList, List<ArrayList<String>> mainList1) {
 
 		Scanner input = new Scanner(System.in);
 		int choice=1000;
@@ -143,7 +142,7 @@ public class Print {
 		for (int j = 0;j<attNameList.size() ; j++)
 		{
 			System.out.print(mainList1.get(choice).get(j));
-			for (int k=0; k<24 -((String) (mainList1.get(choice)).get(j)).length();k++)
+			for (int k=0; k<24 -( (mainList1.get(choice)).get(j)).length();k++)
 			{
 				System.out.print(" ");
 			}
