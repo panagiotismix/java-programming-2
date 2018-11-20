@@ -19,7 +19,7 @@ public class FieldEdit {
 			System.out.println("2. Edit existing attribute.");
 			System.out.println("3. Delete attribute.");
 			System.out.println("4. Add field.");
-			System.out.println("Waiting for your choice: ");
+			System.out.print("Waiting for your choice: ");
 
 			choice = input.nextInt();
 
@@ -30,38 +30,38 @@ public class FieldEdit {
 	    	else if (choice == 3)
 	    		deleteAttribute(fieldList);
 	    	else if (choice == 0)
-				mainObject.menu();
+					Menu.getMenu();
 	    	else
 	    		System.out.println("Invalide input, please try again: ");
-	    	}  while (choice <= 0 || choice >= 4);
+	    	}  while (choice < 0 || choice >= 4);
 
 
 		}
 
 
 	 public void addNewAttribute(List<List<String>> mainList, List<String> fieldList, List<String> attNameList) {
-		 
+
 		do {
-		 
+
 		 	System.out.println("Enter the kind of the attribute: ");
-			
+
 			for (int i = 0; i < attNameList.size(); i++) {
-				
+
 				if (attNameList.get(i).equals(input.nextLine()))
 					flag = 1;
 			}
-			
+
 			if (flag != 1) {
 				attNameList.add(input.nextLine());
 				for (int i = 0; i < mainList.size(); i++) {
-				
+
 					mainList.get(i).set(attNameList.size(), null);
-				
+
 				}
-			
+
 				System.out.println("Enter the name of the attribute: ");
 				fieldList.set(attNameList.size(), input.nextLine());
-				
+
 			} else {
 				System.out.println("This kind of attribute already exists. ");
 				System.out.println("0 to go back.");
@@ -72,7 +72,7 @@ public class FieldEdit {
 					} else if (choice == 1)
 						flag = 0;
 			}
-			
+
 		} while (flag == 1);
 
 	 }
@@ -89,7 +89,7 @@ public class FieldEdit {
 
 		if (choice == 0) {
 
-			mainObject.menu();
+			Menu.getMenu();
 
 		} else if (choice == 1) {
 
@@ -121,67 +121,67 @@ public class FieldEdit {
 			} while (choice != 0);
 		}
 	}
-	
+
 	public void editAttribute(List<String> fieldList) {
-		
+
 		System.out.println("0. Back to main menu.");
 		System.out.println("1. Choose attribute to edit.");
 		System.out.println("2. Print available attributes.");
 		System.out.println("Waiting for your choice: ");
-		
+
 		do {
-			
+
 			choice = input.nextInt();
-			
+
 			if (choice == 0)
-			
-				mainObject.menu();
+
+				Menu.getMenu();
 
 		   else if (choice == 1) {
-			   
+
 				System.out.println("Input attribute ID: ");
 				choice = input.nextInt();
 				System.out.println("Input new value: ");
-				fieldList.set(choice, input.nextLine());			   
+				fieldList.set(choice, input.nextLine());
 		   } else if (choice == 2) {
 			   for (int i = 0; i < fieldList.size(); i++) {
 					System.out.println(i + fieldList.get(i));
 			   }
 		   }
-				
-			
+
+
 		} while (choice < 0 || choice > 2);
 	}
-	
+
 	public void deleteAttribute(List<String> fieldList) {
-		
+
 		System.out.println("0. Back to main menu.");
 		System.out.println("1. Choose attribute to delete.");
 		System.out.println("2. Print available attributes.");
 		System.out.println("Waiting for your choice: ");
-		
+
 		do {
-			
+
 			choice = input.nextInt();
-			
+
 			if (choice == 0)
-			
-				mainObject.menu();
+
+				Menu.getMenu();
 
 		   else if (choice == 1) {
-			   
+
 				System.out.println("Input attribute ID: ");
 				fieldList.remove(input.nextInt());
-				
+
 		   } else if (choice == 2) {
 			   for (int i = 0; i < fieldList.size(); i++) {
 					System.out.println(i + fieldList.get(i));
 			   }
 		   }
-				
-			
+
+
 		} while (choice < 0 || choice > 2);
-		
+
 	}
 
 }
