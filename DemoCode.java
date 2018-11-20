@@ -31,7 +31,7 @@ public class DemoCode {
     	do {
 
     	choice = input.nextInt();
-
+    		
     	if (choice == 1)
     		newField();
     	else if (choice == 2 )

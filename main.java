@@ -43,7 +43,9 @@ public class main {
 		System.out.println(Mainlist.get(0));
 		System.out.println(Mainlist.get(1));
 		System.out.println("Kalimera");
+		
 		//editing existing lists - WAY2, DIRECT EDITING in MainList
-
+		((List) Mainlist.get(0)).set(0,"karamitros");
+		System.out.println(Mainlist.get(0));
 	}//end of main
 }//end of class	
