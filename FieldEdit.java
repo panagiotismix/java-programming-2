@@ -6,8 +6,9 @@ import java.util.ArrayList;
 public class FieldEdit {
 
 	int flag = 0;
-	int ID = 0;
+	int delCounter, delID, ID = 0;
 	String attKind;
+	Print printOb = new Print();
 
 	Scanner input = new Scanner(System.in);
 	int choice, counter = 0;
@@ -60,7 +61,8 @@ public class FieldEdit {
 			System.out.println("2. Edit existing attribute.");
 			System.out.println("3. Delete attribute.");
 			System.out.println("4. Add field.");
-			System.out.print("Waiting for your choice: ");
+			System.out.println("5. Delete field.");
+			System.out.println("Waiting for your choice: ");
 
 			choice = input.nextInt();
 
@@ -70,16 +72,19 @@ public class FieldEdit {
 	    		editAttribute(fieldList);
 	    	else if (choice == 3)
 	    		deleteAttribute(fieldList);
+	    	else if (choice == 4)
+	    		newField(mainList, fieldList, attNameList);
+	    	else if (choice == 5)
+	    		deleteField(mainList, fieldList, attNameList);
 	    	else if (choice == 0)
 					Menu.getMenu();
 	    	else
 	    		System.out.println("Invalide input, please try again: ");
 			
-			}  while (choice < 0 || choice >= 4);
+			}  while (choice < 0 || choice > 5);
 
 
 	}
-
 
 	 public void addNewAttribute(List<ArrayList<String>> mainList, ArrayList<String> fieldList, ArrayList<String> attNameList) {
 
@@ -114,10 +119,12 @@ public class FieldEdit {
 					if (choice == 0) {
 						printEditOptions(mainList, fieldList, attNameList);
 					} else if (choice == 1)
-						flag = 0;
+						flag = 1;
 			}
 
 		} while (flag == 1);
+		
+		printEditOptions(mainList, fieldList, attNameList);
 
 	 }
 
@@ -189,22 +196,67 @@ public class FieldEdit {
 
 	}
 
-	public void newField(List<ArrayList<String>> mainList, ArrayList<String> attNameList) {
+	public void newField(List<ArrayList<String>> mainList, ArrayList<String> fieldList, ArrayList<String> attNameList) {
 
-		ArrayList<String> fieldList = new ArrayList<String> ();
-		fieldList.set(0, String.valueOf(ID));
+		ArrayList<String> newFieldList = new ArrayList<String> ();
+		newFieldList.set(0, String.valueOf(ID));
 		ID++;
-		System.out.println("Input attribute ID: ");
-		fieldList.set(1, input.nextLine());
-		mainList.add(fieldList);
+		System.out.println("Input the name of the new field: ");
+		newFieldList.set(1, input.nextLine());
+		mainList.add(newFieldList);
 
 		for (int i = 0; i < attNameList.size(); i++) {
 			if (i > 1)
-				fieldList.add(null);
+				newFieldList.add(null);
 
 		}
 
-		Menu.getMenu();
+		printEditOptions(mainList, fieldList, attNameList);
+		
+	}
+	
+	public void deleteField(List<ArrayList<String>> mainList,
+			ArrayList<String> fieldList, ArrayList<String> attNameList) {
+		
+		System.out.println("0. Go back.");
+		System.out.println("1. Print all fields.");
+		System.out.println("2. Delete a single field.");
+		System.out.println("3. Delete multiple fields.");
+
+		do {
+
+			choice = input.nextInt();
+
+			if (choice == 0)
+				printEditOptions(mainList, fieldList, attNameList);
+
+		   else if (choice == 1) {
+
+				printOb.ShowComplete(attNameList, mainList);
+
+		   } else if (choice == 2) {
+				System.out.println("Input the id of the field you wish to delete: ");
+				mainList.remove(input.nextInt());
+				
+		   } else if (choice == 3) {
+			   	
+				System.out.println("WARNING!!!!! This method only works if you input each individual ID with increasing order.");
+				System.out.println();
+			   	delCounter = 0;
+				System.out.println("Input the number of the fields you wish to delete: ");
+				System.out.println();
+				for (int i = input.nextInt(); i > 0; i--) {
+					System.out.println("Input the id of the field you wish to delete: ");
+					mainList.remove(input.nextInt() - delCounter); //delCounter gia na antistathmizi to delete kathe listas me to kainourio id
+					delCounter++;
+					System.out.println();
+				}
+		   } else
+		   		System.out.println("Invalid Input, please try again: ");
+
+		} while (choice < 0 || choice > 3);
+
+		deleteField(mainList, fieldList, attNameList);
 		
 	}
 
