@@ -12,9 +12,9 @@ public class FieldEdit {
 
 	Scanner input = new Scanner(System.in);
 	int choice, counter = 0;
-	
+
 		public void chooseList(List<ArrayList<String>> mainList, ArrayList<String> attNameList) {
-		
+
 		do {
 
 			System.out.println("0. Go back to main menu.");
@@ -29,26 +29,24 @@ public class FieldEdit {
 				Menu.getMenu();
 
 			} else if (choice == 1) {
-
+				
 				System.out.println("Choose the field you want to edit: ");
-				printEditOptions(mainList, mainList.get(input.nextInt()), attNameList);
-
+				printEditOptions(mainList, mainList.get(idChoice(mainList)), attNameList);
+				
 			} else if ( choice == 2 ) {
 
 				for (int i = 0; i < mainList.size(); i++) {
-
 					System.out.println("List N." + (i+1) + ": ID = ");
 					System.out.printf(mainList.get(i).get(0));
 					System.out.printf(" Name = ");
 					System.out.printf(mainList.get(i).get(1));
 					System.out.println();
 				}
-	
-			} else 
+
+			} else
 		   		System.out.println("Invalid Input, please try again: ");
 			
 		} while (choice <= 0 || choice >= 2 );
-		
 		chooseList(mainList, attNameList);
 	}
 
@@ -80,16 +78,13 @@ public class FieldEdit {
 					Menu.getMenu();
 	    	else
 	    		System.out.println("Invalide input, please try again: ");
-			
+
 			}  while (choice < 0 || choice > 5);
-
-
 	}
 
 	 public void addNewAttribute(List<ArrayList<String>> mainList, ArrayList<String> fieldList, ArrayList<String> attNameList) {
 
 		do {
-
 		 	System.out.println("Enter the kind of the attribute: ");
 
 		 	attKind = input.nextLine();
@@ -101,31 +96,43 @@ public class FieldEdit {
 			}
 
 			if (flag != 1) {
-				attNameList.add(input.nextLine());
+				attNameList.add(attKind);
 				for (int i = 0; i < mainList.size(); i++) {
-
-					mainList.get(i).set(attNameList.size(), null);
-
-				}
+					mainList.get(i).set(attNameList.size(), null); //kainourgies adies theseis se olous tous
+				}												  //pinakes gia na diatirite h paralilia
 
 				System.out.println("Enter the name of the attribute: ");
 				fieldList.set(attNameList.size(), input.nextLine());
 
 			} else {
-				System.out.println("This kind of attribute already exists. ");
+				System.out.println("This kind of attribute already exists.");
 				System.out.println("0 to go back.");
 				System.out.println("1 to retry.");
+				do {
 					choice = input.nextInt();
 					if (choice == 0) {
 						printEditOptions(mainList, fieldList, attNameList);
 					} else if (choice == 1)
 						flag = 1;
+					else 
+						System.out.println("Invalid input, please try again.");
+				} while (choice != 0 || choice != 1);
 			}
-
 		} while (flag == 1);
-		
-		printEditOptions(mainList, fieldList, attNameList);
 
+		System.out.println("Would you like to create another one?");
+		System.out.println("0 to go back.");
+		System.out.println("1 to repeat.");
+		do {
+			choice = input.nextInt();
+			if (choice == 0) {
+				printEditOptions(mainList, fieldList, attNameList);
+			} else if (choice == 1)
+				addNewAttribute(mainList, fieldList, attNameList); //An epilexthi auto o xristis ftiaxnei 
+			else 												  //ksana anagastika sthn idia lista
+				System.out.println("Invalid input, please try again.");
+		} while (choice != 0 || choice != 1);
+		
 	 }
 
 	public void editAttribute(ArrayList<String> fieldList) {
@@ -144,22 +151,21 @@ public class FieldEdit {
 				Menu.getMenu();
 
 		   else if (choice == 1) {
-
-				System.out.println("Input attribute ID: ");
-				choice = input.nextInt();
+						    			
+			    System.out.println("Input attribute ID: ");			    
 				System.out.println("Input new value: ");
-				fieldList.set(choice, input.nextLine());
+				fieldList.set(idChoice(fieldList), input.nextLine());
 
 		   } else if (choice == 2) {
 			   for (int i = 0; i < fieldList.size(); i++) {
 					System.out.println(i + fieldList.get(i));
 			   }
+			   
 		   } else
-	    		System.out.println("Invalide input, please try again: ");
-
+	    		System.out.println("Invalid input, please try again: ");
 
 		} while (choice < 0 || choice > 2);
-		
+
 		editAttribute(fieldList);
 	}
 
@@ -181,7 +187,7 @@ public class FieldEdit {
 		   else if (choice == 1) {
 
 				System.out.println("Input attribute ID: ");
-				fieldList.remove(input.nextInt());
+				fieldList.remove(idChoice(fieldList));
 
 		   } else if (choice == 2) {
 			   for (int i = 0; i < fieldList.size(); i++) {
@@ -207,17 +213,17 @@ public class FieldEdit {
 
 		for (int i = 0; i < attNameList.size(); i++) {
 			if (i > 1)
-				newFieldList.add(null);
-
+				newFieldList.add(null); //dimiourgia kenwn thesewn gia diatirisi paralilias
 		}
-
+		System.out.println("List added successfuly!");
+		System.out.println();
 		printEditOptions(mainList, fieldList, attNameList);
-		
-	}
-	
+
+	} //pithanon na xriasti uperofortosi gia na mporei na kaleite apo alles klasis autonoma
+
 	public void deleteField(List<ArrayList<String>> mainList,
 			ArrayList<String> fieldList, ArrayList<String> attNameList) {
-		
+
 		System.out.println("0. Go back.");
 		System.out.println("1. Print all fields.");
 		System.out.println("2. Delete a single field.");
@@ -235,17 +241,19 @@ public class FieldEdit {
 				printOb.ShowComplete(attNameList, mainList);
 
 		   } else if (choice == 2) {
-				System.out.println("Input the id of the field you wish to delete: ");
-				mainList.remove(input.nextInt());
+			   
+				System.out.println("Input the id of the field you wish to delete: ");					
+				mainList.remove(idChoice(mainList));
 				
 		   } else if (choice == 3) {
-			   	
+
 				System.out.println("WARNING!!!!! This method only works if you input each individual ID with increasing order.");
 				System.out.println();
 			   	delCounter = 0;
 				System.out.println("Input the number of the fields you wish to delete: ");
 				System.out.println();
-				for (int i = input.nextInt(); i > 0; i--) {
+				
+				for (int i = idChoice(mainList); i > 0; i--) {
 					System.out.println("Input the id of the field you wish to delete: ");
 					mainList.remove(input.nextInt() - delCounter); //delCounter gia na antistathmizi to delete kathe listas me to kainourio id
 					delCounter++;
@@ -257,7 +265,29 @@ public class FieldEdit {
 		} while (choice < 0 || choice > 3);
 
 		deleteField(mainList, fieldList, attNameList);
+
+	}
+	
+	public int idChoice(List<ArrayList<String>> mainList) {
 		
+		do {
+			choice = input.nextInt();
+			if (choice < 0 || choice > mainList.size())
+	    		System.out.println("Invalid input, please try again: ");
+	    	
+	    } while (choice < 0 || choice > mainList.size());
+		return choice;
+	}
+	
+	public int idChoice(ArrayList<String> fieldList) {
+		
+		do {
+			choice = input.nextInt();
+			if (choice < 0 || choice > fieldList.size())
+	    		System.out.println("Invalid input, please try again: ");
+	    	
+	    } while (choice < 0 || choice > fieldList.size());
+		return choice;
 	}
 
 }
