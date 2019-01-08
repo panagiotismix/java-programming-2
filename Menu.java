@@ -9,9 +9,9 @@ public class Menu {
       Print printObject = new Print();
       FieldEdit FieldEditobject = new FieldEdit();
 
-      List <ArrayList<String>> mainList = new ArrayList<>();
-      ArrayList <String> attNameList = new ArrayList<>();
-      ArrayList <String> fieldList = new ArrayList<>();
+      List <ArrayList<String>> mainList = new ArrayList<ArrayList<String>>();
+      ArrayList <String> attNameList = new ArrayList<String>();
+      ArrayList <String> fieldList = new ArrayList<String>();
 
       System.out.println("\n*        Welcome to your Data Base Tool powered by Amstel!       *");
       System.out.println("         _________________________________________________       ");
@@ -29,12 +29,12 @@ public class Menu {
     		break;
 
     		case 2:
-
+    			FieldEditobject.newField(mainList, fieldList, attNameList);
     		break;
 
     		case 3:
           System.out.println("\n");
-    			FieldEditobject.printEditOptions(mainList, fieldList, attNameList);
+    			FieldEditobject.chooseList(mainList, attNameList);
     		break;
 
         case 0:
